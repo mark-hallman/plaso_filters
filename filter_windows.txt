@@ -1,5 +1,5 @@
 # Filter file for log2timeline for triaging Windows systems.
-# Mark Hallman Version 1.02
+# Additions to SANS 508 config file by Mark Hallman Version 1.02
 #
 # This file can be used by image_export or log2timeline to selectively export
 # few key files of a Windows system. This file will collect:
