@@ -32,18 +32,21 @@
 # {sysregistry}/(SAM|SOFTWARE|SECURITY|SYSTEM)
 /Windows/System32/config/(SAM|SOFTWARE|SECURITY|SYSTEM)
 /Windows/System32/config/(SAM[.]LOG[1-9]|SOFTWARE[.]LOG[1-9]|SECURITY[.]LOG[1-9]|SYSTEM[.]LOG[1-9])
-/Users/.+/Documents/.+/.+[.]doc[x]?
 
 #####
 # Recycle Bin and Recycler.
+# increased depth for deleted subfolders
 #####
 /[$]Recycle.Bin
 /[$]Recycle.Bin/.+
 /[$]Recycle.Bin/.+/.+
+/[$]Recycle.Bin/.+/.+/.+
+/[$]Recycle.Bin/.+/.+/.+/.+
 /RECYCLER
 /RECYCLER/.+
 /RECYCLER/.+/.+
-
+/RECYCLER/.+/.+/.+
+/RECYCLER/.+/.+/.+/.+
 
 #####
 # Windows Event Logs.
@@ -63,24 +66,33 @@
 
 #####
 # Various log files.
+# including .old for text-based [p]firewall logs
 #####
 # {windir}/inf/setupapi[.].+[.]log
 # {windir}/setupapi.log
-# {windir}/System32/LogFiles/.+/.+[.]txt
+# {windir}/System32/LogFiles/.+/.+[.]log
 /Windows/inf/setupapi[.].+[.]log
 /Windows/setupapi.log
-/Windows/System32/LogFiles/.+/.+[.]txt
+/Windows/System32/LogFiles/.+/.+[.]log
+/Windows/System32/LogFiles/.+/.+[.]log[.]old
 
 #####
-# Windows Artifacts
+# Windows Execution Artifacts
+# including System32\Tasks for future processing
+# including CIM database for future processing
 #####
 # {windir}/Tasks/.+[.]job
-# {windir}/Appcompat/Programs/Recentfilecache[.]bcf
-# {windir}/Appcompat/Programs/AMcache[.]hve
+# {windir}/Appcompat/Programs/RecentFileCache[.]bcf
+# {windir}/Appcompat/Programs/Amcache[.]hve
 /Windows/Tasks/.+[.]job
-/Windows/Appcompat/Programs/Recentfilecache[.]bcf
-/Windows/Appcompat/Programs/AMcache[.]hve
-/Windows/appcompat/Programs/AMcache[.]hve[.]LOG[1-9]
+/Windows/System32/Tasks/.+
+/Windows/System32/Tasks/.+/.+
+/Windows/System32/Tasks/.+/.+/.+
+/Windows/System32/Tasks/.+/.+/.+/.+
+/Windows/Appcompat/Programs/RecentFileCache[.]bcf
+/Windows/Appcompat/Programs/Amcache[.]hve
+/Windows/appcompat/Programs/Amcache[.]hve[.]LOG[1-9]
+/Windows/System32/wbem/Repository/.+
 
 #####
 # Windows Search Index
@@ -89,13 +101,15 @@
 
 #####
 # Prefetch files.
+# include all files for Superfetch for future processing
 #####
-# {windir}/Prefetch/.+[.]pf
-/Windows/Prefetch/.+[.]pf
+# {windir}/Prefetch/.+
+/Windows/Prefetch/.+
 #####
 
 #####
 # Browser history artifacts.
+# including browser artifacts for the system profile
 #####
 /Documents And Settings/.+/Application Data/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
 /Documents And Settings/.+/Cookies/index[.]dat
@@ -117,77 +131,23 @@
 /Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
 /Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
 /Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/WebCache/.+[.]libfwevt_xml_document_read_with_template_values
+/Users/.+/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
 /Users/.+/AppData/Roaming/Macromedia/FlashPlayer/#SharedObjects/.+[.]sol
 /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
 /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
 /Users/.+/AppData/Roaming/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/MSHist.+/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
+/Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
 
-#####
-# Users Registry hives & associated logs
-#####
-/(Users|Documents And Settings)/.+/NTUSER[.]DAT
-/(Users|Documents And Settings)/.+/ntuser[.]DAT[.]LOG[1-9]
-/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]DAT[.]LOG[1-9]
-
-#####
-# Windows System Registry hives
-# {sysregistry} points to the location that contains the system hives,
-# eg: \Windows\System32\config.
-#####
-# {sysregistry}/(SAM|SOFTWARE|SECURITY|SYSTEM)
-/Windows/System32/config/(SAM|SOFTWARE|SECURITY|SYSTEM)
-/Windows/System32/config/(SAM[.]LOG[1-9]|SOFTWARE[.]LOG[1-9]|SECURITY[.]LOG[1-9]|SYSTEM[.]LOG[1-9])
-/Users/.+/Documents/.+/.+[.]doc[x]?
-
-#####
-# Windows Event Logs.
-#####
-# {systemroot}/winevt/Logs/.+[.]evtx
-# {systemroot}/config/.+[.]evt
-/Windows/System32/winevt/Logs/.+[.]evtx
-/Windows/System32/config/.+[.]evt
-
-#####
-# Windows Event Trace Logs (ETL)
-#####
-/Windows/System32/WDI/LogFiles/.+[.]etl
-/Windows/System32/LogFles/WMI/.+[.]etl
-/Windows/System32/LogFles/WMI/RtBackup/.+[.]etl
-/Windows/System32/SleepStudy/.+[.]etl
-
-#####
-# Various log files.
-#####
-# {windir}/inf/setupapi[.].+[.]log
-# {windir}/setupapi.log
-# {windir}/System32/LogFiles/.+/.+[.]txt
-/Windows/inf/setupapi[.].+[.]log
-/Windows/setupapi.log
-/Windows/System32/LogFiles/.+/.+[.]txt
-
-#####
-# Prefetch files.
-#####
-# {windir}/Prefetch/.+[.]pf
-/Windows/Prefetch/.+[.]pf
-
-#####
-# Windows Execution Artifacts
-#####
-# {windir}/Tasks/.+[.]job
-# {windir}/Appcompat/Programs/Recentfilecache[.]bcf
-# {windir}/Appcompat/Programs/AMcache[.]hve
-/Windows/Tasks/.+[.]job
-/Windows/Appcompat/Programs/Recentfilecache[.]bcf
-/Windows/Appcompat/Programs/AMcache[.]hve
-/Windows/appcompat/Programs/AMcache[.]hve[.]LOG[1-9]
-
-#####
-# Windows Search Index
-#####
-/programdata/microsoft/search/data/applications/windows/Windows.edb
 
 #####
 # Users Registry hives & associated logs
@@ -224,32 +184,3 @@
 /Users/.+/Desktop/.+/.+[.]ppt[x]?
 /Users/.+/Desktop/.+/.+[.]xls[x]?
 /Users/.+/Desktop/.+/.+[.]pdf
-
-#####
-# Browser history artifacts.
-#####
-/Users/.+/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/History/History.IE5/MSHist.+/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
-/Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
-/Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
-/Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
-/Users/.+/AppData/Roaming/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
-/Users/.+/AppData/Local/Microsoft/Windows/WebCache/.+[.]libfwevt_xml_document_read_with_template_values
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/History
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Current Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Last Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Current Tabs
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Last Tabs
-/Users/.+/AppData/Roaming/Macromedia/FlashPlayer/#SharedObjects/.+[.]sol
-/Documents And Settings/.+/Local Settings/History/History.IE5/index[.]dat
-/Documents And Settings/.+/Local Settings/History/History.IE5/MSHist.+/index[.]dat
-/Documents And Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index[.]dat
-/Documents And Settings/.+/Cookies/index[.]dat
-/Documents And Settings/.+/Application Data/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
-/Documents And Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/.+/History
-/Documents And Settings/.+/Local Settings/Application Data/Google/Chrome/.+
