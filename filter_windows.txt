@@ -18,6 +18,14 @@
 # * Flash cookies, or LSO/SOL files from the Flash player.
 
 #####
+# Memory artifacts.
+#####
+/hiberfil.sys
+/pagefile.sys
+/swapfile.sys
+/Windows/memory.dmp
+
+#####
 # File system artifacts.
 #####
 /[$]MFT
