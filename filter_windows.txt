@@ -18,11 +18,19 @@
 # * Flash cookies, or LSO/SOL files from the Flash player.
 
 #####
-# File system artifacts.
+# File system artifacts
 #####
 /[$]MFT
 /[$]LogFile
 /[$]Extend/$UsnJrnl
+
+#####
+# Memory artifacts
+#####
+/hiberfil.sys
+/pagefile.sys
+/swapfile.sys
+/Windows/memory.dmp
 
 #####
 # Windows System Registry hives
