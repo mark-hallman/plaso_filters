@@ -33,6 +33,14 @@
 /[$]Extend/$UsnJrnl
 
 #####
+# Memory artifacts
+#####
+/hiberfil.sys
+/pagefile.sys
+/swapfile.sys
+/Windows/memory.dmp
+
+#####
 # Windows System Registry hives
 # {sysregistry} points to the location that contains the system hives,
 # eg: \Windows\System32\config.
@@ -155,7 +163,8 @@
 /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
 /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
 /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
-
+/Users/.+/AppData/Local/Packages/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/AC/MicrosoftEdge/User/Default/DataStore/Data/nouser1/120712-0049/DBStore/spartan.edb
+/Users/.+/MicrosoftEdgeBackups/backups/.+/DatastoreBackup/spartan.edb
 
 #####
 # Users Registry hives & associated logs
