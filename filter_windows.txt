@@ -33,12 +33,13 @@
 /[$]Extend/$UsnJrnl
 
 #####
-# Memory artifacts
+# Memory artifacts - Include for image_export, log2timeline currenlty does not
+# process these artifacts.
 #####
-/hiberfil.sys
-/pagefile.sys
-/swapfile.sys
-/Windows/memory.dmp
+# /hiberfil.sys
+# /pagefile.sys
+# /swapfile.sys
+# /Windows/memory.dmp
 
 #####
 # Windows System Registry hives

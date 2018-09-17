@@ -1,0 +1,39 @@
+##########
+# Translated in Plaso filters by Mark Hallman.  Logic by Rob Lee, Eric Zimmerman and others
+# Version 1.01  2018-07-12
+##########
+
+##########
+# Evidence of Execution
+##########
+psort.py -z 'UTC' -o l2tcsv -w execution.csv blake_ffilter.plaso "(message contains 'Prefetch {' or message contains 'AppCompatCache' or message contains 'typed the following cmd' or message contains 'CMD typed' or message contains 'Last run' or message contains 'RunMRU' or message contains 'MUICache' or message contains 'UserAssist key' or message contains 'Time of Launch' or message contains 'Prefetch' or message contains 'SHIMCACHE' or message contains 'Scheduled' or message contains '.pf' or message contains 'was run' or message contains 'UEME_' or message contains '[PROCESS]') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Evidence of Deletion
+##########
+psort.py -z 'UTC' -o l2tcsv -w deleted_data.csv blake_ffilter.plaso  "(message contains 'RECYCLE' or message contains 'DELETED' or message contains 'Deleted Registry' or message contains '$Recycle.Bin') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Evidence of Web Usage
+##########
+psort.py -z 'UTC' -o l2tcsv -w web_usage.csv blake_ffilter.plaso "(message contains 'Expiration Time' or message contains 'Cookie' or message contains 'Visited' or (message contains 'URL' and source_long not contains 'FILE') or message contains 'Flash Cookie' or (message contains 'LSO' and source_long not contains 'REG') or message contains 'http://' or message contains 'https://' or message contains 'Location:' or message contains 'times(s) HTTP' or message contains 'Last Visited Time' or source_long contains 'WEBHIST') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Evidence of Folder Opening
+##########
+psort.py -z 'UTC' -o l2tcsv -w folder_opening.csv blake_ffilter.plaso "(message contains 'lnk/shell_items' or source_long contains 'File entry shell item' or message contains 'BagMRU' or message contains 'ShellNoRoam/Bags') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Evidence of File Opening
+##########
+psort.py -z 'UTC' -o l2tcsv -w file_opening.csv blake_ffilter.plaso "(message contains 'visited file://' or message contains 'CreateDate' or message contains 'URL:file://' or mmessage contains 'Folder opened' or message contains 'Shortcut LNK' or message contains 'RecentDocs key' or message contains 'Link target:' or message contains 'File attribute flags' or message contains 'Birth droid volume identifier:' or message contains 'UserAssist entry' or message contains '.lnk' or message contains 'Recently opened file' or message contains 'file of extension' or (message contains 'Recently' and source_long not contains 'Firefox') or (message contains 'file://' and source_long not contains 'Firefox') or message contains 'RecentDocs') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Device / USB Usage
+##########
+psort.py -z 'UTC' -o l2tcsv -w device_usb_uasge.csv blake_ffilter.plaso "(message contains 'MountPoints2' or message contains 'volume mounted' or message contains 'USB' or message contains '/USB/Vid_' or message contains 'Enum/USBSTOR/Disk' or message contains 'RemovableMedia' or message contains 'STORAGE/RemovableMedia' or message contains 'drive mounted' or message contains 'Drive last mounted' or message contains 'SetupAPI Log') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
+
+##########
+# Log Files
+##########
+psort.py -z 'UTC' -o l2tcsv -w log_files.csv blake_ffilter.plaso "(message contains 'EVT' or message contains 'XP Firewall Log' or message contains 'Event Level:' or source_long contains'EVT') and (date > '2013-08-01 00:00:00' AND date < '2013-10-22 023:59:59')"
