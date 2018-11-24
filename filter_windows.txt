@@ -86,6 +86,17 @@
 /Windows/System32/LogFiles/.+/.+[.]log[.]old
 
 #####
+# Anti-Virus Log and Quarantine files
+#####
+# Symantec
+/ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Logs/.+[.]log
+/ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Logs/AV/.+[.]log
+/ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Quarantine/.+[.]VBN
+/ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Quarantine/.+/.+[.]VBN
+/ProgramData/Symantec/Symantec Endpoint Protection/PersistedData/sephwid.xml
+/Users/.+/AppData/Local/Symantec/Symantec Endpoint Protection/Logs/.+[.]log
+
+#####
 # Windows Execution Artifacts
 # including System32\Tasks for future processing
 # including CIM database for future processing
