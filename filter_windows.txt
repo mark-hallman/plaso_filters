@@ -1,5 +1,9 @@
 # Filter file for log2timeline for triaging Windows systems.
-# Additions to SANS 508 config file by Mark Hallman Version 1.02
+#
+# I am unsure of the Genesis of this file but I originally came across it in the
+# SANS FOR508 Class authored by Rob Lee and Chad Tilbury.  I have started
+# maintaining / updating this file as part of my ongoing research of Plaso.
+# Additions to SANS 508 config file by Mark Hallman Version 1.03
 #
 # This file can be used by image_export or log2timeline to selectively export
 # few key files of a Windows system. This file will collect:
@@ -25,7 +29,7 @@
 /[$]Extend/$UsnJrnl
 
 #####
-# Memory artifacts - Include for image_export, log2timeline currenlty does not
+# Memory artifacts - Include for image_export, log2timeline currently does not
 # process these artifacts.
 #####
 # /hiberfil.sys
