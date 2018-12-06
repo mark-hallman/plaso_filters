@@ -142,11 +142,19 @@
 /Documents And Settings/.+/Local Settings/History/History.IE5/index[.]dat
 /Documents And Settings/.+/Local Settings/History/History.IE5/MSHist.+/index[.]dat
 /Documents And Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Current Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Current Tabs
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/History
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Last Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/.+/Last Tabs
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Cookies
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Session
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Tabs
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Favicons.+
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/History.+
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Session
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Tabs
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Preferences
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Shortcuts.+
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Top Sites.+
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Bookmarks.+
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Visited Links
+/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Web Data.+
 /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
 /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
 /Users/.+/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
