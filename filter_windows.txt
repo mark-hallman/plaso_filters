@@ -72,6 +72,7 @@
 #####
 # Windows Event Trace Logs (ETL)
 #####
+/Windows/System32/WDI/[{].+/
 /Windows/System32/WDI/LogFiles/.+[.]etl
 /Windows/System32/LogFles/WMI/.+[.]etl
 /Windows/System32/LogFles/WMI/RtBackup/.+[.]etl
