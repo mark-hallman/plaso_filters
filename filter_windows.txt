@@ -1,4 +1,4 @@
-# Filter file for log2timeline for triaging Windows systems.
+.+.+.+.+.+.+# Filter file for log2timeline for triaging Windows systems.
 #
 # I am unsure of the Genesis of this file but I originally came across it in the
 # SANS FOR508 Class authored by Rob Lee and Chad Tilbury.  I have started
@@ -21,35 +21,44 @@
 # * Browser cookie files: IE.
 # * Flash cookies, or LSO/SOL files from the Flash player.
 
-#####
+###############
 # File system artifacts.
-#####
+###############
 /[$]MFT
 /[$]LogFile
-/[$]Extend/$UsnJrnl
+/[$]Extend/[$]UsnJrnl
 
-#####
+###############
 # Memory artifacts - Include for image_export, log2timeline currently does not
 # process these artifacts.
-#####
+###############
 # /hiberfil.sys
 # /pagefile.sys
 # /swapfile.sys
 # /Windows/memory.dmp
 
-#####
+###############
+# File System artifacts - Include for image_export, log2timeline currently does not
+# process these artifacts.
+###############
+/[$]Secure
+/[$]Boot
+/[$]Extend/[$]RmMetadata/[$]TxfLog/[$]Tops
+
+###############
 # Windows System Registry hives
 # {sysregistry} points to the location that contains the system hives,
 # eg: \Windows\System32\config.
-#####
+###############
 # {sysregistry}/(SAM|SOFTWARE|SECURITY|SYSTEM)
 /Windows/System32/config/(SAM|SOFTWARE|SECURITY|SYSTEM)
 /Windows/System32/config/(SAM[.]LOG[1-9]|SOFTWARE[.]LOG[1-9]|SECURITY[.]LOG[1-9]|SYSTEM[.]LOG[1-9])
+/Windows/System32/config/RegBack/(SAM|SOFTWARE|SECURITY|SYSTEM[1-9])
+/Windows/System32/config/RegBack/.+[.]LOG
 
-#####
-# Recycle Bin and Recycler.
-# increased depth for deleted subfolders
-#####
+###############
+# Recycle Bin and Recycler
+###############
 /[$]Recycle.Bin
 /[$]Recycle.Bin/.+
 /[$]Recycle.Bin/.+/.+
@@ -61,27 +70,25 @@
 /RECYCLER/.+/.+/.+
 /RECYCLER/.+/.+/.+/.+
 
-#####
-# Windows Event Logs.
-#####
-# {systemroot}/winevt/Logs/.+[.]evtx
-# {systemroot}/config/.+[.]evt
+###############
+# Windows Event Logs
+###############
 /Windows/System32/winevt/Logs/.+[.]evtx
 /Windows/System32/config/.+[.]evt
 
-#####
+###############
 # Windows Event Trace Logs (ETL)
-#####
+###############
 /Windows/System32/WDI/[{].+/
 /Windows/System32/WDI/LogFiles/.+[.]etl
 /Windows/System32/LogFles/WMI/.+[.]etl
 /Windows/System32/LogFles/WMI/RtBackup/.+[.]etl
 /Windows/System32/SleepStudy/.+[.]etl
+/ProgramData/Microsoft/Windows/PowerEfficiency Diagnostics/energy-ntkl.etl
 
-#####
-# Various log files.
-# including .old for text-based [p]firewall logs
-#####
+###############
+# Various log files
+###############
 # {windir}/inf/setupapi[.].+[.]log
 # {windir}/setupapi.log
 # {windir}/System32/LogFiles/.+/.+[.]log
@@ -89,10 +96,11 @@
 /Windows/setupapi.log
 /Windows/System32/LogFiles/.+/.+[.]log
 /Windows/System32/LogFiles/.+/.+[.]log[.]old
+/Windows/System32/wbem/Repository.+
 
-#####
+###############
 # Anti-Virus Log and Quarantine files
-#####
+###############
 # Symantec
 /ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Logs/.+[.]log
 /ProgramData/Symantec/Symantec Endpoint Protection/CurrentVersion/Data/Logs/AV/.+[.]log
@@ -101,14 +109,14 @@
 /ProgramData/Symantec/Symantec Endpoint Protection/PersistedData/sephwid.xml
 /Users/.+/AppData/Local/Symantec/Symantec Endpoint Protection/Logs/.+[.]log
 
-#####
+###############
+# Prefetch files
+###############
+/Windows/Prefetch/.+
+
+###############
 # Windows Execution Artifacts
-# including System32\Tasks for future processing
-# including CIM database for future processing
-#####
-# {windir}/Tasks/.+[.]job
-# {windir}/Appcompat/Programs/RecentFileCache[.]bcf
-# {windir}/Appcompat/Programs/Amcache[.]hve
+###############
 /Windows/Tasks/.+[.]job
 /Windows/System32/Tasks/.+
 /Windows/System32/Tasks/.+/.+
@@ -119,43 +127,62 @@
 /Windows/appcompat/Programs/Amcache[.]hve[.]LOG[1-9]
 /Windows/System32/wbem/Repository/.+
 
-#####
+###############
+# SRUM
+###############
+/Windows/System32/SRU
+
+###############
 # Windows Search Index
+###############
 /programdata/microsoft/search/data/applications/windows/Windows.edb
-#####
 
-#####
-# Prefetch files.
-# include all files for Superfetch for future processing
-#####
-# {windir}/Prefetch/.+
-/Windows/Prefetch/.+
-#####
-
-#####
-# Browser history artifacts.
-# including browser artifacts for the system profile
-#####
-/Documents And Settings/.+/Application Data/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
+###############
+# Browser history artifacts
+###############
 /Documents And Settings/.+/Cookies/index[.]dat
-/Documents And Settings/.+/Local Settings/Application Data/Google/Chrome/.+
-/Documents And Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/.+/History
 /Documents And Settings/.+/Local Settings/History/History.IE5/index[.]dat
 /Documents And Settings/.+/Local Settings/History/History.IE5/MSHist.+/index[.]dat
 /Documents And Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Cookies
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Tabs
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Favicons.+
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/History.+
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Session
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Tabs
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Preferences
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Shortcuts.+
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Top Sites.+
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Bookmarks.+
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Visited Links
-/Users/.+/AppData/Local/Google/Chrome/User Data/Default/Web Data.+
+
+        ###############
+        # Chrome Browser history artifacts
+        ###############
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Bookmarks.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Cookies.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Current Session.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Current Tabs.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Favicons.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/History.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Last Session.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Last Tabs.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Preferences.+_
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Shortcuts.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Top Sites.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Bookmarks.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Visited Links.+
+        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Web Data.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Cookies.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Session.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Current Tabs.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Favicons.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/History.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Session.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Last Tabs.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Preferences.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Shortcuts.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Top Sites.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Bookmarks.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Visited Links.+
+        /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Web Data.+
+
+        ###############
+        # Firefox Browser history artifacts
+        ###############
+        /Documents And Settings/.+/Application Data/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
+        /Users/.+/AppData/Roaming/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
+
+
 /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
 /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
 /Users/.+/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
@@ -168,53 +195,57 @@
 /Users/.+/AppData/Roaming/Macromedia/FlashPlayer/#SharedObjects/.+[.]sol
 /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
 /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
-/Users/.+/AppData/Roaming/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
 /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
 /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/MSHist.+/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/.+
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/MSHist.+/index[.]dat
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
+/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/.+
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
+## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
 /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
 /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
 /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
 /Users/.+/AppData/Local/Packages/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/AC/MicrosoftEdge/User/Default/DataStore/Data/nouser1/120712-0049/DBStore/spartan.edb
 /Users/.+/MicrosoftEdgeBackups/backups/.+/DatastoreBackup/spartan.edb
 
-#####
+###############
 # Users Registry hives & associated logs
-#####
+###############
 /(Users|Documents And Settings)/.+/NTUSER[.]DAT
 /(Users|Documents And Settings)/.+/ntuser[.]DAT[.]LOG[1-9]
 /Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]dat
 /Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]DAT[.]LOG[1-9]
 
-#####
-# Recent file activity.
-#####
+###############
+# Recent file activity
+###############
 /Users/.+/AppData/Roaming/Microsoft/Windows/Recent/.+[.]LNK
 /Users/.+/AppData/Roaming/Microsoft/Office/Recent/.+[.]LNK
+/Users/.+/AppData/Roaming/Microsoft/Office/Recent/index.dat
 /Users/.+/Desktop/.+[.]LNK
 /Documents And Settings/.+/Recent/.+[.]LNK
 /Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Automaticdestinations/.+[.]automaticDestinations-ms
 /Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Customdestinations/.+[.]customDestinations-ms
 /Users/.+/AppData/Local/ConnectedDevicesPlatform/.+/ActivitiesCache.db
+/Users/.+/AppData/Local/Microsoft/Windows/Explorer/thumbcache_.+.db
 
-#####
+###############
+# Chat client artifacts
+###############
+/Users/.+/AppData/Local/Packages/Microsoft.SkypeApp_.+/LocalState/.+/main.db
+
+###############
 # Email - currently only Outlook
-#####
+###############
 /(Users|Documents And Settings)/.+/AppData/Local/Microsoft/Outlook/.+[.](ost|pst)
 
-#####
+###############
 # User Documents
-#####
-/Users/.+/Documents/.+/.+[.]doc[x]?
-/Users/.+/Documents/.+/.+[.]ppt[x]?
-/Users/.+/Documents/.+/.+[.]xls[x]?
-/Users/.+/Documents/.+/.+[.]pdf
-/Users/.+/Desktop/.+/.+[.]doc[x]?
-/Users/.+/Desktop/.+/.+[.]ppt[x]?
-/Users/.+/Desktop/.+/.+[.]xls[x]?
-/Users/.+/Desktop/.+/.+[.]pdf
+###############
+/Users/.+/Desktop/.+
+/Users/.+/Documents/.+
+/Users/.+/Downloads/.+
+/Users/.+/Dropbox.+/.+
