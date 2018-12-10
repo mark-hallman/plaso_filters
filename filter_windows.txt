@@ -126,6 +126,7 @@
 /Windows/Appcompat/Programs/Amcache[.]hve
 /Windows/appcompat/Programs/Amcache[.]hve[.]LOG[1-9]
 /Windows/System32/wbem/Repository/.+
+/Windows/SchedLgU.txt
 
 ###############
 # SRUM
@@ -222,10 +223,11 @@
 ###############
 # Users Registry hives & associated logs
 ###############
-/(Users|Documents And Settings)/.+/NTUSER[.]DAT
-/(Users|Documents And Settings)/.+/ntuser[.]DAT[.]LOG[1-9]
-/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]DAT[.]LOG[1-9]
+/Documents and Settings/*/ntuser[.]dat
+/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat
+/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat[.]LOG[1-9]
+/Users/*/ntuser[.]dat
+/Users/*/ntuser[.]dat[.]LOG[1-9]
 
 ###############
 # Recent file activity
@@ -243,7 +245,13 @@
 ###############
 # Chat client artifacts
 ###############
-/Users/.+/AppData/Local/Packages/Microsoft.SkypeApp_.+/LocalState/.+/main.db
+
+        ###############
+        # Skype client artifacts
+        ###############
+        /Users/.+/AppData/Local/Packages/Microsoft.SkypeApp_.+/LocalState/.+/main.db
+        /Documents and Settings/.+/Application Data/Skype/.+/main.db
+
 
 ###############
 # Email - currently only Outlook
