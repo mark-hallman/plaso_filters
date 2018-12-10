@@ -3,7 +3,7 @@
 # I am unsure of the Genesis of this file but I originally came across it in the
 # SANS FOR508 Class authored by Rob Lee and Chad Tilbury.  I have started
 # maintaining / updating this file as part of my ongoing research of Plaso.
-# Additions to SANS 508 config file by Mark Hallman Version 1.03
+# Additions to SANS 508 config file by Mark Hallman Version 1.04 - 2018-12-10
 #
 # This file can be used by image_export or log2timeline to selectively export
 # few key files of a Windows system. This file will collect:
@@ -47,14 +47,28 @@
 
 ###############
 # Windows System Registry hives
-# {sysregistry} points to the location that contains the system hives,
-# eg: \Windows\System32\config.
 ###############
-# {sysregistry}/(SAM|SOFTWARE|SECURITY|SYSTEM)
-/Windows/System32/config/(SAM|SOFTWARE|SECURITY|SYSTEM)
-/Windows/System32/config/(SAM[.]LOG[1-9]|SOFTWARE[.]LOG[1-9]|SECURITY[.]LOG[1-9]|SYSTEM[.]LOG[1-9])
-/Windows/System32/config/RegBack/(SAM|SOFTWARE|SECURITY|SYSTEM[1-9])
-/Windows/System32/config/RegBack/.+[.]LOG
+/Windows/ServiceProfiles/LocalService/ntuser[.]dat
+/Windows/ServiceProfiles/LocalService/ntuser[.]dat[.]LOG[1-9]
+/Windows/ServiceProfiles/NetworkService/ntuser[.]dat
+/Windows/ServiceProfiles/NetworkService/ntuser[.]dat[.]LOG[1-9]
+/Windows/System32/config/RegBack/*[.]LOG[1-9]
+/Windows/System32/config/RegBack/SAM
+/Windows/System32/config/RegBack/SECURITY
+/Windows/System32/config/RegBack/SOFTWARE
+/Windows/System32/config/RegBack/SYSTEM
+/Windows/System32/config/RegBack/SYSTEM1
+/Windows/System32/config/SAM
+/Windows/System32/config/SAM[.]LOG[1-9]
+/Windows/System32/config/SECURITY
+/Windows/System32/config/SECURITY[.]LOG[1-9]
+/Windows/System32/config/SOFTWARE
+/Windows/System32/config/SOFTWARE[.]LOG[1-9]
+/Windows/System32/config/SYSTEM
+/Windows/System32/config/SYSTEM[.]LOG[1-9]
+/Windows/System32/config/systemprofile/ntuser[.]dat
+/Windows/System32/config/systemprofile/ntuser[.]dat[.]LOG[1-9]
+
 
 ###############
 # Recycle Bin and Recycler
@@ -87,16 +101,16 @@
 /ProgramData/Microsoft/Windows/PowerEfficiency Diagnostics/energy-ntkl.etl
 
 ###############
+# USB Devices log files
+###############
+/Windows/inf/setupapi[.]dev[.]log
+/Windows/setupapi[.]log
+
+###############
 # Various log files
 ###############
-# {windir}/inf/setupapi[.].+[.]log
-# {windir}/setupapi.log
-# {windir}/System32/LogFiles/.+/.+[.]log
-/Windows/inf/setupapi[.].+[.]log
-/Windows/setupapi.log
 /Windows/System32/LogFiles/.+/.+[.]log
 /Windows/System32/LogFiles/.+/.+[.]log[.]old
-/Windows/System32/wbem/Repository.+
 
 ###############
 # Anti-Virus Log and Quarantine files
@@ -145,15 +159,34 @@
         ###############
         # Internet Explorer Browser history artifacts
         ###############
-        /Documents and Settings/.+/Local Settings/History/History.IE5/index.dat
-        /Documents and Settings/.+/Local Settings/History/History.IE5/.+/index.dat
-        /Documents and Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index.dat
-        /Documents and Settings/.+/Cookies/index.dat
         /Documents and Settings/.+/Application Data/Microsoft/Internet Explorer/UserData/index.dat
         /Documents and Settings/.+/Application Data/Microsoft/Office/Recent/index.dat
-        /Users/.+/AppData/Roaming/Microsoft/Office/Recent/index.dat
-        /Users/.+/AppData/Local/Microsoft/Windows/WebCache/WebCacheV01.dat
+        /Documents and Settings/.+/Cookies/index.dat
+        /Documents and Settings/.+/Local Settings/History/History.IE5/.+/index.dat
+        /Documents and Settings/.+/Local Settings/History/History.IE5/index.dat
+        /Documents and Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index.dat
         /Documents And Settings/.+/Local Settings/Temporary Internet Files/Content.IE5/index[.]dat
+        /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
+        /Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
+        /Users/.+/AppData/Local/Microsoft/Windows/WebCache/WebCacheV01.dat
+        /Users/.+/AppData/Local/Packages/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/AC/MicrosoftEdge/User/Default/DataStore/Data/nouser1/120712-0049/DBStore/spartan.edb
+        /Users/.+/AppData/Roaming/Macromedia/FlashPlayer/#SharedObjects/.+[.]sol
+        /Users/.+/AppData/Roaming/Microsoft/Office/Recent/index.dat
+        /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
+        /Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
+        /Users/.+/MicrosoftEdgeBackups/backups/.+/DatastoreBackup/spartan.edb
+        /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
+        /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
+        /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/.+
+        /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/.+
+        /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
+        /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
+        /Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
 
         ###############
         # Chrome Browser history artifacts
@@ -169,7 +202,6 @@
         /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Preferences.+_
         /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Shortcuts.+
         /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Top Sites.+
-        /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Bookmarks.+
         /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Visited Links.+
         /Documents and Settings/.+/Local Settings/Application Data/Google/Chrome/User Data/Default/Web Data.+
         /Users/.+/AppData/Local/Google/Chrome/User Data/Default/Cookies.+
@@ -191,34 +223,6 @@
         ###############
         /Documents And Settings/.+/Application Data/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
         /Users/.+/AppData/Roaming/Mozilla/Firefox/Profiles/.+/.+[.]sqlite
-
-
-/Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
-/Users/.+/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
-
-/Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
-/Users/.+/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
-/Users/.+/AppData/Roaming/Macromedia/FlashPlayer/#SharedObjects/.+[.]sol
-/Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
-/Users/.+/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/.+/.+[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Internet Explorer/Recovery/Immersive/.+/.+[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/.+
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/index[.]dat
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/History.IE5/MSHist.+/index[.]dat
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/index[.]dat
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/History/Low/History.IE5/MSHist.+/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/.+
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Content.IE5/index[.]dat
-## /Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/Temporary Internet Files/Low/Content.IE5/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Local/Microsoft/Windows/WebCache/.+[.]dat
-/Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/index[.]dat
-/Windows/System32/config/systemprofile/AppData/Roaming/Microsoft/Windows/Cookies/Low/index[.]dat
-/Users/.+/AppData/Local/Packages/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/AC/MicrosoftEdge/User/Default/DataStore/Data/nouser1/120712-0049/DBStore/spartan.edb
-/Users/.+/MicrosoftEdgeBackups/backups/.+/DatastoreBackup/spartan.edb
 
 ###############
 # Users Registry hives & associated logs
