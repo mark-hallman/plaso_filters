@@ -230,14 +230,15 @@
 ###############
 # Recent file activity
 ###############
-/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/.+[.]LNK
-/Users/.+/AppData/Roaming/Microsoft/Office/Recent/.+[.]LNK
-/Users/.+/Desktop/.+[.]LNK
 /Documents And Settings/.+/Recent/.+[.]LNK
-/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Automaticdestinations/.+[.]automaticDestinations-ms
-/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Customdestinations/.+[.]customDestinations-ms
+/Documents And Settings/.+/Desktop/.+[.]LNK
 /Users/.+/AppData/Local/ConnectedDevicesPlatform/.+/ActivitiesCache.db
 /Users/.+/AppData/Local/Microsoft/Windows/Explorer/thumbcache_.+.db
+/Users/.+/AppData/Roaming/Microsoft/Office/Recent/.+[.]LNK
+/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/.+[.]LNK
+/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Automaticdestinations/.+[.]automaticDestinations-ms
+/Users/.+/AppData/Roaming/Microsoft/Windows/Recent/Customdestinations/.+[.]customDestinations-ms
+/Users/.+/Desktop/.+[.]LNK
 
 ###############
 # Chat client artifacts
@@ -247,7 +248,10 @@
 ###############
 # Email - currently only Outlook
 ###############
-/(Users|Documents And Settings)/.+/AppData/Local/Microsoft/Outlook/.+[.](ost|pst)
+/Documents and Settings/.+/Local Settings/Application Data/Microsoft/Outlook/.+[.]pst
+/Documents and Settings/.+/Local Settings/Application Data/Microsoft/Outlook/.+[.]ost
+/Users/.+/AppData/Local/Microsoft/Outlook/.+[.]pst
+/Users/.+/AppData/Local/Microsoft/Outlook/.+[.]ost
 
 ###############
 # User Documents
