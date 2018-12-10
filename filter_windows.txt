@@ -1,4 +1,4 @@
-.+.+.+.+.+.+# Filter file for log2timeline for triaging Windows systems.
+# Filter file for log2timeline for triaging Windows systems.
 #
 # I am unsure of the Genesis of this file but I originally came across it in the
 # SANS FOR508 Class authored by Rob Lee and Chad Tilbury.  I have started
