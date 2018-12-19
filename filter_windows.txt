@@ -52,7 +52,7 @@
 /Windows/ServiceProfiles/LocalService/ntuser[.]dat[.]LOG[1-9]
 /Windows/ServiceProfiles/NetworkService/ntuser[.]dat
 /Windows/ServiceProfiles/NetworkService/ntuser[.]dat[.]LOG[1-9]
-/Windows/System32/config/RegBack/*[.]LOG[1-9]
+/Windows/System32/config/RegBack/.+[.]LOG[1-9]
 /Windows/System32/config/RegBack/SAM
 /Windows/System32/config/RegBack/SECURITY
 /Windows/System32/config/RegBack/SOFTWARE
@@ -227,11 +227,10 @@
 ###############
 # Users Registry hives & associated logs
 ###############
-/Documents and Settings/*/ntuser[.]dat
-/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat
-/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat[.]LOG[1-9]
-/Users/*/ntuser[.]dat
-/Users/*/ntuser[.]dat[.]LOG[1-9]
+/(Users|Documents And Settings)/.+/NTUSER[.]DAT
+/(Users|Documents And Settings)/.+/NTUSER[.]DAT[.]LOG[1-9]
+/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]dat
+/Users/.+/AppData/Local/Microsoft/Windows/Usrclass[.]DAT[.]LOG[1-9]
 
 ###############
 # Recent file activity
