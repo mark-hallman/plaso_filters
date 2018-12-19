@@ -140,7 +140,7 @@
 /Windows/Appcompat/Programs/Amcache[.]hve
 /Windows/appcompat/Programs/Amcache[.]hve[.]LOG[1-9]
 /Windows/System32/wbem/Repository/.+
-/Windows/SchedLgU.txt
+/Windows/Tasks/SchedLgU.txt
 
 ###############
 # SRUM
