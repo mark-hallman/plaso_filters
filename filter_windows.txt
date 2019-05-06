@@ -227,11 +227,11 @@
 ###############
 # Users Registry hives & associated logs
 ###############
-/Documents and Settings/*/ntuser[.]dat
-/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat
-/Users/*/AppData/Local/Microsoft/Windows/UsrClass[.]dat[.]LOG[1-9]
-/Users/*/ntuser[.]dat
-/Users/*/ntuser[.]dat[.]LOG[1-9]
+/Documents and Settings/.*/ntuser[.]dat
+/Users/.*/AppData/Local/Microsoft/Windows/UsrClass[.]dat
+/Users/.*/AppData/Local/Microsoft/Windows/UsrClass[.]dat[.]LOG[1-9]
+/Users/.*/ntuser[.]dat
+/Users/.*/ntuser[.]dat[.]LOG[1-9]
 
 ###############
 # Recent file activity
