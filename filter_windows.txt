@@ -36,6 +36,7 @@
 # /pagefile.sys
 # /swapfile.sys
 # /Windows/memory.dmp
+# /Users/.+/AppData/Local/CrashDumps/.+[.]dmp
 
 ###############
 # File System artifacts - Include for image_export, log2timeline currently does not
